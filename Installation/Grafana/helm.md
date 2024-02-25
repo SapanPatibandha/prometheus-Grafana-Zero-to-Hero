@@ -15,3 +15,7 @@
 ## Expose Grafana Service
 
 `kubectl expose service grafana — type=NodePort — target-port=3000 — name=grafana-ext`
+
+## Command to get password for Graphana
+
+`kubectl get secret grafana -o jsonpath="{.data.admin-password}" | %{[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_))}`
