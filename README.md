@@ -72,3 +72,14 @@ Grafana supports a wide range of data sources, including databases, time-series 
 
 In addition to its powerful data visualization and analysis capabilities, Grafana is also highly extensible. It supports a wide range of plugins and integrations, including integrations with popular monitoring and logging tools like Prometheus, Elasticsearch, and InfluxDB.
 
+
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/prometheus
+helm install grafana grafana/grafana
+kubectl port-forward svc/prometheus-server 9090:80 &
+kubectl port-forward svc/grafana 3000:80 &
+kubectl get secret grafana -o jsonpath="{.data.admin-password}" | %{[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_))}
+http://prometheus-server
