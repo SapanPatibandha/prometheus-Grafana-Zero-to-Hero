@@ -92,3 +92,6 @@ In addition to its powerful data visualization and analysis capabilities, Grafan
 
 ```http://prometheus-server```
 
+```helm uninstall prometheus```
+
+```helm uninstall grafana```
